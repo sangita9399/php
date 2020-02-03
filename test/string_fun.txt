@@ -1,0 +1,13 @@
+//str_replace
+
+
+This string function is used to replace the given string by specific given string at specific position 
+or without position it replace whole string.
+
+e.g.,
+
+$str = "hello World";
+$str1 = "hi";
+
+str_replace($str,$str1,str_pos('$str',"hello"));
+
