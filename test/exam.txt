@@ -1,0 +1,10 @@
+//array_filter
+
+
+It is used to filter given data from the array
+
+$data = '1';
+$arr =['1','2','3','1']; 
+array_filter($data,$arr);
+ 
+
