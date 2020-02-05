@@ -1,14 +1,13 @@
 <?php
 include "database.php";
+
 session_start();
-function getvalue($fieldname )
+function getvalues($fieldname )
 {
     return isset($_POST[$fieldname]) 
         ? $_POST[$fieldname] 
         : " " ;
 }
-
-
 
 function filter_account($arr)
 {
@@ -27,6 +26,24 @@ function filter_account($arr)
         case 'content':
             $arr_acc[$value] = $arr[$value];
         break;
+        case 'image':
+            if(empty($_FILES['name']['image'])) {    
+                return "Select a image file";
+            }
+            else {
+                $uploadOrNot = (uploadImg(array('image/jpeg','image/jpg'),'Image'));
+                if($uploadOrNot !== 1) {
+                    return $uploadOrNot;
+                }
+                else {
+                    return "1";
+                }
+            }
+        break;
+        case 'blog_category':
+            $arr_acc[$value] = implode(',',$arr[$value]);
+
+        break;
         case 'published_at':
             $arr_acc[$value] = $arr[$value];
         break;
@@ -37,19 +54,23 @@ function filter_account($arr)
     return $arr_acc ;
 }
 
+
 function store_data($tb_name,$arr)
 {
     if(isset($_POST['submit_post']))
     {
+       // print_r($_SESSION);
+        echo "<br>";
         $now = date('D/M/Y || H:i:s ', time());
         $key = array_keys($arr);
         array_push($key,'created_post_at');
         array_push($key, 'user_id');
         $val = array_values($arr);
         array_push($val,$now);
+       // echo $_SESSION['u_id'];
         array_push($val, $_SESSION['u_id']);
         print_r($val);
-         echo   $sql = "INSERT INTO $tb_name (" . implode(',', $key) . ")" . 
+        echo  $sql = "INSERT INTO $tb_name (" . implode(',', $key) . ")" . 
                     "VALUES('" . implode("','", $val).  "')";
         echo $GLOBALS['lastid1'] = mysqli_query($GLOBALS['conn'], $sql) 
             ? mysqli_insert_id($GLOBALS['conn']) 
@@ -64,18 +85,48 @@ function fetch_category($tb_name,$fieldname)
     while($row = mysqli_fetch_assoc($result))
     {
         $selected = "selected='selected'";
-        echo "<option value = $row[p_category] (in_array($row[p_category],(getvalue('category',[]))))
+        echo "<option value = $row[p_category] 
+             (in_array($row[p_category],(getvalue('blog_category',[]))))
              ? $selected: ''> $row[p_category]"; 
         echo "</option>";
     }
 }
 
+function uploadImg($definedType, $fileInput) {
+    $cnt = 0;
+    echo $fileName = $_FILES['name'][$fileInput];
+    $tmp_name = $_FILES['tmp_name'][$fileInput];
+    $location = "uploads/";
+    $type = $_FILES['type'][$fileInput];
+    foreach($definedType as $defineType) {
+        if($type == $defineType) {
+            $cnt = 1;
+        }
+    }
+    if ($cnt == 1) {
+        if(!file_exists($location . $fileName)) {
+            move_uploaded_file($tmp_name, $location . $fileName); 
+            return 1;       
+        }
+        else {
+            return 'File already Exists';  
+        }
+    }
+    else {
+        $type = '';
+        foreach($definedType as $defineType)
+            $type .= "File should be ".$defineType;
+        return $type;
+    }
+}
+
+
 $arr = filter_account($_POST);
 
 echo "<pre>";
-//print_r($_POST);
+print_r($_POST);
 
-print_r($arr);
+//print_r($arr);
 echo "</pre>";
 
 store_data('blog_post',$arr);
