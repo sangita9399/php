@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Login Page</title>
+        <title>BLOG CATEGORY Page</title>
     </head>
     <body>
-        <?php require_once "view_category.php";
+        <?php require_once "view_post.php";
         ?>
         <form method="POST">
         <table>
@@ -20,24 +20,23 @@
                 <th>Blog Post</th>
             </tr>
             <tr>
-                 <td><input type = "submit" name = "add_category" value = "Add Blog Post"></td>
+                 <td><input type = "submit" name = "add_post" value = "Add Category"></td>
             </tr>
         </table>
-
         </form>
         <form method = "GET">
         <table border = '1'>
             <div>
                 <tr>
-                    <th>Post_id</th>
+                    <th>Category id</th>
+                    <th>Category Image</th>
                     <th>Category Name</th>
-                    <th>Title</th>
-                    <th>Published At</th>
+                    <th>Created Date</th>
                     <th>Actions</th>
                 </tr>
             </div>
            <div>
-                <?php  fetch_post(); ?>
+                <?php  fetch_category(); ?>
            </div>
                
         </table>

@@ -1,6 +1,6 @@
 <?php
 include "database.php";
-
+session_start();
 function getvalue($fieldname )
 {
     return isset($_POST[$fieldname]) 
@@ -19,27 +19,33 @@ if(isset($_POST['register']))
 function fetch_row()
 {
 
-   $sql = "SELECT email, password FROM registration";
+   $sql = "SELECT r_id, email, password FROM registration";
    $result= mysqli_query($GLOBALS['conn'], $sql) ;  
-   if(!$result)
-   {
-       echo "could not fetch row<br>" . mysqli_error($GLOBALS['conn']);
-   }
-   else
-   {
-    $flag = 0;
-    while($row = mysqli_fetch_array($result))
-    {   
-         if($row['email'] == getvalue('email') && $row['password'] == getvalue('password'))
+    while($row = mysqli_fetch_assoc($result))
+    {  
+        $flag = 0; 
+        echo $row['email'];
+         if($row['email'] == $_POST['email'] && $row['password'] == $_POST['password'])
          {
-            header('Location:category.php');
-         }
-         else
-         {
-             echo "invalid email or password";
-         }
+            $now = date('D/M/Y || H:i:s ', time());
+             $_SESSION['u_id'] = $row['r_id'];
+            // echo $_SESSION['u_id'];
+                $sql = "INSERT INTO registeration(login_at)values('$now')";
+                mysqli_query($GLOBALS['conn'],$sql);
+                
+             $flag = 1;
+         break;
+         }  
     }
+    if($flag == 1)
+    {
+        header('Location:category.php');
     }
+    else
+    {
+        echo "invalid email or password";
+    }
+    
 }
 
 ?>

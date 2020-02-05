@@ -30,15 +30,15 @@
             </tr>
             <tr>
                 <td>Parent Category</td>
-                <?php $prefixValues = ['electronics', 'Lifestyle', 'health', 'education']; ?>
-                <td><select name = "category">
+                <?php $parentCategoryData = ['electronics', 'Lifestyle', 'HEALTH', 'education']; ?>
+                <td><select name = "p_category">
                 <?php 
                     $selected = "selected='selected'";
-                    foreach($prefixValues as $prefix):
+                    foreach($parentCategoryData as $parent):
                     ?>
-                    <option value=<?php echo $prefix?>
-                        <?php echo (in_array(getData('category'),[$prefix]))? $selected : ""   ?>>
-                        <?php echo $prefix?>
+                    <option value=<?php echo $parent?>
+                        <?php echo (in_array(getvalue('p_category'),[$parent]))? $selected : ""   ?>>
+                        <?php echo $parent?>
                     </option>
                     <?php endforeach; ?>
                 </select></td>
