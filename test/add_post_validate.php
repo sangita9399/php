@@ -4,9 +4,20 @@ include "database.php";
 session_start();
 function getvalues($fieldname )
 {
-    return isset($_POST[$fieldname]) 
-        ? $_POST[$fieldname] 
-        : " " ;
+    if(isset($_SESSION['edit_id']) && !empty($_SESSION['edit_id']))
+    {
+        $sql = "SELECT * FROM blog_post where post_id = '$_SESSION[edit_id]'";
+        $result = mysqli_query($GLOBALS['conn'], $sql);
+        $rows = mysqli_fetch_assoc($result);
+        $arr = filter_account($rows);
+        edit_data("blog_post",$_SESSION['edit_id'],$arr,"'post_id'= '$_SESSION[post_id]'");
+    }
+    else
+    {
+        return isset($_POST[$fieldname]) 
+            ? $_POST[$fieldname] 
+            : " " ;
+    }
 }
 
 function filter_account($arr)
@@ -59,7 +70,6 @@ function store_data($tb_name,$arr)
 {
     if(isset($_POST['submit_post']))
     {
-       // print_r($_SESSION);
         echo "<br>";
         $now = date('D/M/Y || H:i:s ', time());
         $key = array_keys($arr);
@@ -67,7 +77,6 @@ function store_data($tb_name,$arr)
         array_push($key, 'user_id');
         $val = array_values($arr);
         array_push($val,$now);
-       // echo $_SESSION['u_id'];
         array_push($val, $_SESSION['u_id']);
         print_r($val);
         echo  $sql = "INSERT INTO $tb_name (" . implode(',', $key) . ")" . 
@@ -120,17 +129,11 @@ function uploadImg($definedType, $fileInput) {
     }
 }
 
-
-$arr = filter_account($_POST);
-
-echo "<pre>";
-print_r($_POST);
-
-//print_r($arr);
-echo "</pre>";
-
-store_data('blog_post',$arr);
-//echo $lastid1;
+if(isset($_POST['add_category_btn']) && !isset($_SESSION['edit_id']))
+{
+    $arr = filter_account($_POST);
+    store_data('blog_post',$arr);
+}
    
        
 ?>

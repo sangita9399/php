@@ -1,10 +1,22 @@
 <?php
 include "database.php";
+session_start();
 function getvalue($fieldname )
 {
-    return isset($_POST[$fieldname]) 
-        ? $_POST[$fieldname] 
-        : " " ;
+    if(isset($_SESSION['update_cat_id']) && !empty($_SESSION['update_cat_id']))
+    {
+        $sql = "SELECT * FROM category where cat_id = '$_SESSION[update_cat_id]'";
+        $result = mysqli_query($GLOBALS['conn'], $sql);
+        $rows = mysqli_fetch_assoc($result);
+        $arr = filter_category($rows);
+        edit_data("category", $arr, "'cat_id'= '$_SESSION[update_cat_id]'");
+    }
+    else
+    {
+        return isset($_POST[$fieldname]) 
+            ? $_POST[$fieldname] 
+            : " " ;
+    }
 }
 
 function filter_category($arr)
@@ -28,27 +40,29 @@ function filter_category($arr)
             $arr_acc[$value] = $arr[$value];
         break;
         default:
+                $time = time();
+                $now = date('D/M/Y || H:i:s ', $time);
+                array_merge($arr_acc, array('created_at' =>$now));
         break;
     }
     }
     return $arr_acc ;
 }
+if(isset($_POST['add_category_btn']) && !isset($_SESSION['update_cat_id']))
+{
+    $category = filter_category($_POST);
+    store_data('category', $category);
 
-$category = filter_category($_POST);
-print_r($category);
+}
 
-store_data('category', $category);
 function store_data($tb_name,$arr)
 {
    
     if(isset($_POST['add_category_btn']))
     {
-        $time = time();
-        $now = date('D/M/Y || H:i:s ', $time);
+       
         $key = array_keys($arr);
-        array_push($key,'created_cat_at');
         $val = array_values($arr);
-        array_push($val,$now);
         echo "<br>";
         $sql1 = "SELECT parent_cat_id FROM parent_category WHERE p_category = '$_POST[p_category]'";
         $result = mysqli_query($GLOBALS['conn'],$sql1)          ;
