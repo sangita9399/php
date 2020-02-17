@@ -1,17 +1,26 @@
 <?php
 
-require "../Core/Router.php";
-//echo 'Requested URL: "' . $_SERVER['QUERY_STRING'] . '"';
-$router = new Router();
+
+spl_autoload_register(function ($class)
+{
+    $root = dirname(__DIR__);
+    $file = $root . '/' . str_replace('\\', '/', $class) . '.php'; 
+    if(is_readable($file))
+    {
+        require $root . '/' . str_replace('\\', '/', $class) . '.php';
+    }
+});
+
+$router = new Core\Router();
 
 $router ->add('',['controller' => 'Home', 'action' => 'index']);
 $router ->add('posts',['controller' => 'Posts', 'action' => 'index']);
-//$router ->add('posts/new',['controller' => 'Posts', 'action' => 'new']);
 $router -> add('{controller}/{action}');
 $router -> add('{controller}/{id:\d+}/{action}');
 //$router -> add('admin/{action}/{controller}');
 $url = $_SERVER['QUERY_STRING'];
 
+/*
 echo '<pre>';
 echo htmlspecialchars(print_r($router->getRoutes(),true));
 echo '</pre>';
@@ -27,5 +36,7 @@ else
 {
     echo "No route found for URL '$url'";
 }
+*/
 
+$router ->dispatch($url);
 ?>
