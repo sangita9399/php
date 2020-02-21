@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Vehicle Registration Page {% endblock %}
+{% block body %}
+<h1>Vehicle Registration Page</h1>
+
+<form method = 'POST'>
+    <table>
+        <tr>
+            <td><label>Title:</label></td>
+            <td><input type = "text" name = 'title'></td>
+        </tr>
+        <tr>
+            <td><label>Vehicle Number</label></td>
+            <td><input type = 'text' name = 'vehicle_number'></td>
+        </tr>
+        <tr>
+            <td><label>Licence number</label></td>
+            <td><input type = "text" name = 'licence_number'></td>
+        </tr>
+        <tr>
+            <td><label>date</label></td>
+            <td> <input type = "date" name = 'date'></td>
+        </tr>
+        <tr>
+            <td><label>Time slot</label></td>
+            <td><select name = 'timeslot'>
+            
+                {% for i in arr %}
+                    <option>{{i}} </option>
+                {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Vehicle Issue</label></td>
+            <td><input type = "text" name = 'vehicle_issue'></td>
+        </tr>
+        <tr>
+            <td><label>Service Center</label></td>
+            <td><input type = "text" name = 'service_center'></td>
+        </tr>
+        <tr>
+            <td><input type = 'submit' name = 'submit'></td>
+        </tr>
+    </table>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+[18-Feb-2020 11:12:52 Europe/Berlin] Uncaught Exception:'Exception'Message:'No Route Matched'Stack Trace:<pre>#0 C:\xampp\htdocs\Framework\public\index.php(47): Core\Router->dispatch('product')
+#1 {main}</pre>Thrown in:'C:\xampp\htdocs\Framework\Core\Router.php'On Line 92
+[18-Feb-2020 11:12:53 Europe/Berlin] Uncaught Exception:'Exception'Message:'No Route Matched'Stack Trace:<pre>#0 C:\xampp\htdocs\Framework\public\index.php(47): Core\Router->dispatch('favicon.ico')
+#1 {main}</pre>Thrown in:'C:\xampp\htdocs\Framework\Core\Router.php'On Line 92
+[18-Feb-2020 11:20:42 Europe/Berlin] Uncaught Exception:'Exception'Message:'No Route Matched'Stack Trace:<pre>#0 C:\xampp\htdocs\Framework\public\index.php(47): Core\Router->dispatch('favicon.ico')
+#1 {main}</pre>Thrown in:'C:\xampp\htdocs\Framework\Core\Router.php'On Line 92
+[18-Feb-2020 13:09:35 Europe/Berlin] Uncaught Exception:'Exception'Message:'No Route Matched'Stack Trace:<pre>#0 C:\xampp\htdocs\Framework\public\index.php(47): Core\Router->dispatch('product')
+#1 {main}</pre>Thrown in:'C:\xampp\htdocs\Framework\Core\Router.php'On Line 92
+[18-Feb-2020 13:09:38 Europe/Berlin] Uncaught Exception:'Exception'Message:'No Route Matched'Stack Trace:<pre>#0 C:\xampp\htdocs\Framework\public\index.php(47): Core\Router->dispatch('favicon.ico')
+#1 {main}</pre>Thrown in:'C:\xampp\htdocs\Framework\Core\Router.php'On Line 92
+[18-Feb-2020 13:21:32 Europe/Berlin] Uncaught Exception:'Exception'Message:'No Route Matched'Stack Trace:<pre>#0 C:\xampp\htdocs\Framework\public\index.php(47): Core\Router->dispatch('mvc/admin/categ...')
+#1 {main}</pre>Thrown in:'C:\xampp\htdocs\Framework\Core\Router.php'On Line 92
+[18-Feb-2020 13:23:14 Europe/Berlin] Uncaught Exception:'Exception'Message:'Controller class App\Controllers\Mvc not found'Stack Trace:<pre>#0 C:\xampp\htdocs\Framework\public\index.php(47): Core\Router->dispatch('mvc/home')
+#1 {main}</pre>Thrown in:'C:\xampp\htdocs\Framework\Core\Router.php'On Line 87

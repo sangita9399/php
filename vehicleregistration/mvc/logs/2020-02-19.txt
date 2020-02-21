@@ -1,0 +1,12 @@
+[19-Feb-2020 07:14:21 Europe/Berlin] Uncaught Exception:'Exception'Message:'No Route Matched'Stack Trace:<pre>#0 C:\xampp\htdocs\mvc\public\index.php(17): Core\Router->dispatch('')
+#1 {main}</pre>Thrown in:'C:\xampp\htdocs\mvc\Core\Router.php'On Line 81
+[19-Feb-2020 07:14:25 Europe/Berlin] Uncaught Exception:'Exception'Message:'No Route Matched'Stack Trace:<pre>#0 C:\xampp\htdocs\mvc\public\index.php(17): Core\Router->dispatch('favicon.ico')
+#1 {main}</pre>Thrown in:'C:\xampp\htdocs\mvc\Core\Router.php'On Line 81
+[19-Feb-2020 07:15:24 Europe/Berlin] Uncaught Exception:'Exception'Message:'No Route Matched'Stack Trace:<pre>#0 C:\xampp\htdocs\mvc\public\index.php(17): Core\Router->dispatch('')
+#1 {main}</pre>Thrown in:'C:\xampp\htdocs\mvc\Core\Router.php'On Line 81
+[19-Feb-2020 07:16:18 Europe/Berlin] Uncaught Exception:'Exception'Message:'No Route Matched'Stack Trace:<pre>#0 C:\xampp\htdocs\mvc\public\index.php(17): Core\Router->dispatch('login')
+#1 {main}</pre>Thrown in:'C:\xampp\htdocs\mvc\Core\Router.php'On Line 81
+[19-Feb-2020 07:16:34 Europe/Berlin] Uncaught Exception:'Exception'Message:'Controller class App\Controllers\Admin not found'Stack Trace:<pre>#0 C:\xampp\htdocs\mvc\public\index.php(17): Core\Router->dispatch('admin/login')
+#1 {main}</pre>Thrown in:'C:\xampp\htdocs\mvc\Core\Router.php'On Line 76
+[19-Feb-2020 07:16:40 Europe/Berlin] Uncaught Exception:'Exception'Message:'Controller class App\Controllers\Admin not found'Stack Trace:<pre>#0 C:\xampp\htdocs\mvc\public\index.php(17): Core\Router->dispatch('admin/admin')
+#1 {main}</pre>Thrown in:'C:\xampp\htdocs\mvc\Core\Router.php'On Line 76

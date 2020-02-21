@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %} dashboard {% endblock %}
+{% block body %}
+<h1>Dashboard Page</h1>
+
+<br>
+<br>
+<table border="1">
+    <tr>
+        <td>service_id</td>
+        <td>Title</td>
+        <td>Licence Number</td>
+        <td>vehicle_number</td>
+        <td>date</td>
+        <td>Time slot</td>
+        <td>Vehicle issue</td>
+        <td>Service Center</td>
+        <td>Status</td>
+        <td>Action</td>
+    </tr>
+    {% for i in data %}
+        <tr>
+            <td>{{i.service_id}}</td>
+            <td>{{i.title}}</td>
+            <td>{{i.licence_number}}</td>
+            <td>{{i.vehicle_number}}</td>
+            <td>{{i.date}}</td>
+            <td>{{i.timeslot}}</td>
+            <td>{{i.vehicle_issue}}</td>
+            <td>{{i.service_center}}</td>
+            <td>{{i.status}}</td>
+            <td>
+                <nav>
+                    <a href="/mvc/public/Admin/display/edit?id={{i.service_id}}">Edit</a>
+                    <a href="/mvc/public/Admin/display/delete?did={{i.service_id}}">Delete</a>
+                </nav>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %} Registration Page {% endblock %}
+{% block body %}
+<h1>Registration Page</h1>
+
+<form method = 'POST'>
+    <table>
+        <tr>
+            <td><label>First Name:</label></td>
+            <td><input type = "text" name = 'first_name'></td>
+        </tr>
+        <tr>
+            <td><label>Lastname</label></td>
+            <td><input type = 'text' name = 'last_name'></td>
+        </tr>
+        <tr>
+            <td><label>Email</label></td>
+            <td><input type = "email" name = 'email'></td>
+        </tr>
+        <tr>
+            <td><label>password</label></td>
+            <td> <input type = "password" name = 'password'></td>
+        </tr>
+        <tr>
+            <td><label>Phone Number</label></td>
+            <td><input type = "number" name = 'phone_number'></td>
+        </tr>
+        <tr>
+            <td><label>Street</label></td>
+            <td><input type = "text" name = 'street'></td>
+        </tr>
+        <tr>
+            <td><label>city</label></td>
+            <td><input type = "text" name = 'city'></td>
+        </tr>
+        <td><label>zipcode</label></td>
+            <td><input type = "number" name = 'zip_code'></td>
+        <tr>
+            <td><label>country</label></td>
+            <td><select name = 'country' selected>
+                <option>India</option>
+                <option>japan</option>
+                <option>china</option>
+                <option>U.S.</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><input type = 'submit' name = 'register'></td>
+        </tr>
+    </table>
+
+</form>
+
+{% endblock %}
